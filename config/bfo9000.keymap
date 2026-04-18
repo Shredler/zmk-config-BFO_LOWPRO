@@ -11,75 +11,30 @@
 #include <dt-bindings/zmk/ext_power.h>
 #include <dt-bindings/zmk/rgb.h>
 
-#define DEFAULT 0
-#define LOWER   1
-
 / {
-    macros {
-        cstab: cstab {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings
-                = <&macro_press &kp LCTRL &kp LSHIFT>
-                , <&macro_tap &kp TAB>
-                , <&macro_release &kp LSHIFT &kp LCTRL>
-                ;
+    keymap {
+        compatible = "zmk,keymap";
+
+        default_layer {
+            bindings = <
+                &kp ESC      &mt LGUI L    &none      &kp ESC    &kp F1    &kp F2    &kp F3    &kp F4    &kp F5    &kp F6    &kp F7    &kp F8    &kp F9    &kp F10   &kp F11   &kp F12   &kp DEL   &kp A
+                &mt LGUI E   &mt LCTRL F   &none      &kp GRAVE  &kp N1    &kp N2    &kp N3    &kp N4    &kp N5    &kp N6    &kp N7    &kp N8    &kp N9    &kp N0    &kp MINUS &kp EQUAL &kp BSPC  &kp BSPC
+                &kp PG_UP    &mt LCTRL X   &none      &kp TAB    &kp Q     &kp W     &kp E     &kp R     &kp T     &kp Y     &kp U     &kp I     &kp O     &kp P     &kp LBKT  &kp RBKT  &kp BSLH  &kp A
+                &kp PG_DN    &mt LCTRL C   &none      &kp CAPS   &kp A     &kp S     &kp D     &kp F     &kp G     &kp H     &kp J     &kp K     &kp L     &kp SEMI  &kp APOS  &kp ENTER &kp ENTER &kp A
+                &kp A        &mt LCTRL V   &none      &kp LSHIFT &kp Z     &kp X     &kp C     &kp V     &kp B     &kp N     &kp M     &kp COMMA &kp DOT   &kp SLASH &kp RSHIFT &kp RSHIFT &kp UP   &kp A
+                &kp A        &kp A         &none      &kp LCTRL  &kp LGUI  &kp LALT  &kp SPACE &kp SPACE &kp SPACE &kp SPACE &kp SPACE &kp SPACE &kp RGUI  &mo 1     &kp RCTRL &kp LEFT  &kp DOWN  &kp RIGHT
+            >;
         };
 
-        any_string: any_string {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_tap &str "NjXYv2Snr9pV-EX">;
+        layer_1 {
+            bindings = <
+                &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+                &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+                &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+                &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+                &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+                &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+            >;
         };
-
-        plaza: plaza {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings
-                = <&macro_press &kp LSHIFT>
-                , <&kp P>
-                , <&macro_release &kp LSHIFT>
-                , <&kp L &kp A &kp Z &kp A &kp T &kp A &kp X &kp C &kp O>
-                , <&kp N8 &kp N8 &kp N8>
-                ;
-        };
-    };
-};
-
-keymap {
-    compatible = "zmk,keymap";
-
-    default_layer {
-        // | Esc       | Lgui(L)           | N/A  | ESC  | F1  | F2  | F3  | F4  | F5  | F6  | F7  | F8  | F9  | F10             | F11       | F12   | Del   | Any(NjXYv2Snr9pV-EX) |
-        // | Lgui(E)   | Lctrl(F)          | N/A  | ~    | 1   | 2   | 3   | 4   | 5   | 6   | 7   | 8   | 9   | 0               | -         | =     | Bk Spc| Bk Spc               |
-        // | Pg Up     | Lctrl(X)          | N/A  | Tab  | Q   | W   | E   | R   | T   | Y   | U   | I   | O   | P               | [         | ]     | \     | Play/Pause           |
-        // | Pg Dn     | Lctrl(C)          | N/A  | Caps | A   | S   | D   | F   | G   | H   | J   | K   | L   | ;               | '         | Enter | Enter | Vol Up               |
-        // | Mute Mic  | Lctrl(V)          | N/A  | Shift| Z   | X   | C   | V   | B   | N   | M   | ,   | .   | /               | Shift     | Shift | Up    | Vol Dn               |
-        // | Lctrl(Tab)| Lctrl(Lshift(Tab))| N/A  | Ctrl | Win | Alt | Spc | Spc | Spc | Spc | Spc | Spc | Win | Hold for layer1 | RCtrl     | Left  | Dn    | Right                |
-        bindings = <
-            &kp ESC        &mt LGUI L     &none        &kp ESC        &kp F1     &kp F2     &kp F3     &kp F4     &kp F5     &kp F6     &kp F7     &kp F8     &kp F9     &kp F10    &kp F11    &kp F12    &kp DEL    &any_string
-            &mt LGUI E     &mt LCTRL F    &none        &kp GRAVE      &kp N1     &kp N2     &kp N3     &kp N4     &kp N5     &kp N6     &kp N7     &kp N8     &kp N9     &kp N0     &kp MINUS  &kp EQUAL  &kp BSPC   &kp BSPC
-            &kp PG_UP      &mt LCTRL X    &none        &kp TAB        &kp Q      &kp W      &kp E      &kp R      &kp T      &kp Y      &kp U      &kp I      &kp O      &kp P      &kp LBKT   &kp RBKT   &kp BSLH   &kp C_PP
-            &kp PG_DN      &mt LCTRL C    &none        &kp CAPS       &kp A      &kp S      &kp D      &kp F      &kp G      &kp H      &kp J      &kp K      &kp L      &kp SEMI   &kp APOS   &kp ENTER  &kp ENTER  &kp C_VOL_UP
-            &kp C_MUTE     &mt LCTRL V    &none        &kp LSHIFT     &kp Z      &kp X      &kp C      &kp V      &kp B      &kp N      &kp M      &kp COMMA  &kp DOT    &kp SLASH  &kp RSHIFT &kp RSHIFT &kp UP     &kp C_VOL_DN
-            &mt LCTRL TAB  &cstab         &none        &kp LCTRL      &kp LGUI   &kp LALT   &kp SPACE  &kp SPACE  &kp SPACE  &kp SPACE  &kp SPACE  &kp SPACE  &kp LGUI   &mo 1      &kp RCTRL  &kp LEFT   &kp DOWN   &kp RIGHT
-        >;
-    };
-
-    layer_1 {
-        // | BT Clear   | BT 0        | BT 1       | BT 2       | BT 3         | BT 4          | BT 5  | BT 6  | BT 7   | BT Clear   | BT 0        | BT 1       | BT 2       | BT 3         | BT 4          | BT 5  | BT 6  | PLAZA |
-        // | USB        | BLE         | Trans      | Trans      | Trans        | Trans         | Trans | Trans | Trans  | USB        | BLE         | Trans      | Trans      | Trans        | Trans         | Trans | Trans | Trans |
-        // | Ext Pwr On | Ext Pwr Off | Trans      | Trans      | Trans        | Trans         | Trans | Trans | Trans  | Ext Pwr On | Ext Pwr Off | Trans      | Trans      | Trans        | Trans         | Trans | Trans | Trans |
-        // | Sys Reset  | Bootloader  | Trans      | Trans      | Trans        | Trans         | Trans | Trans | Trans  | Sys Reset  | Bootloader  | Trans      | Trans      | Trans        | Trans         | Trans | Trans | Trans |
-        // | RGB Toggle | RGB Hue Up  | RGB Sat Up | RGB Bri Up | RGB Speed Up | RGB Effect Up | Trans | Trans | Trans  | RGB Toggle | RGB Hue Up  | RGB Sat Up | RGB Bri Up | RGB Speed Up | RGB Effect Up | Trans | Trans | Trans |
-        // | Trans      | RGB Hue Dn  | RGB Sat Dn | RGB Bri Dn | RGB Speed Dn | RGB Effect Dn | Trans | Trans | Trans  | Trans      | RGB Hue Dn  | RGB Sat Dn | RGB Bri Dn | RGB Speed Dn | RGB Effect Dn | Trans | Trans | Trans |
-        bindings = <
-            &bt BT_CLR       &bt BT_SEL 0      &bt BT_SEL 1    &bt BT_SEL 2    &bt BT_SEL 3    &bt BT_SEL 4    &bt BT_SEL 5    &bt BT_SEL 6    &bt BT_SEL 7    &bt BT_CLR       &bt BT_SEL 0      &bt BT_SEL 1    &bt BT_SEL 2    &bt BT_SEL 3    &bt BT_SEL 4    &bt BT_SEL 5    &bt BT_SEL 6    &plaza
-            &out OUT_USB     &out OUT_BLE      &trans          &trans          &trans          &trans          &trans          &trans          &trans          &out OUT_USB     &out OUT_BLE      &trans          &trans          &trans          &trans          &trans          &trans          &trans
-            &ext_power EP_ON &ext_power EP_OFF &trans          &trans          &trans          &trans          &trans          &trans          &trans          &ext_power EP_ON &ext_power EP_OFF &trans          &trans          &trans          &trans          &trans          &trans          &trans
-            &sys_reset       &bootloader       &trans          &trans          &trans          &trans          &trans          &trans          &trans          &sys_reset       &bootloader       &trans          &trans          &trans          &trans          &trans          &trans          &trans
-            &rgb_ug RGB_TOG  &rgb_ug RGB_HUI   &rgb_ug RGB_SAI &rgb_ug RGB_BRI &rgb_ug RGB_SPI &rgb_ug RGB_EFF &trans          &trans          &trans          &rgb_ug RGB_TOG  &rgb_ug RGB_HUI   &rgb_ug RGB_SAI &rgb_ug RGB_BRI &rgb_ug RGB_SPI &rgb_ug RGB_EFF &trans          &trans          &trans
-            &trans           &rgb_ug RGB_HUD   &rgb_ug RGB_SAD &rgb_ug RGB_BRD &rgb_ug RGB_SPD &rgb_ug RGB_EFR &trans          &trans          &trans          &trans           &rgb_ug RGB_HUD   &rgb_ug RGB_SAD &rgb_ug RGB_BRD &rgb_ug RGB_SPD &rgb_ug RGB_EFR &trans          &trans          &trans
-        >;
     };
 };
